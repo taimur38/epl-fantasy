@@ -1,17 +1,14 @@
-import json
-
-from flask import Flask, request
 import requests
+from flask import Flask
 
 app = Flask(__name__)
 
+url_template = 'http://live.premierleague.com/syndicationdata/competitionId=8/seasonId=2015/matchDayId=38/league-table.json'
 
 @app.route('/api/table')
 def table():
-    with open('current_table_info.json') as f:
-        curr_table_info = json.load(f)
-
-    return json.dumps(curr_table_info['table'])
+    rsp = requests.get(url_template)
+    return rsp.text
 
 
-app.run(host='0.0.0.0', port=8080, debug=True)
+app.run(host='0.0.0.0', debug=True)

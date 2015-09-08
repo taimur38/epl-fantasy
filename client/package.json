@@ -1,0 +1,27 @@
+{
+  "name": "epl-frontend",
+  "version": "0.0.0",
+  "description": "Site to track fantasy winners",
+  "main": "server.js",
+  "scripts": {
+    "debug": "nodejs server.js",
+    "build": "nodejs node_modules/webpack/bin/webpack.js --colors --progress -p",
+    "start": "nodejs server.js"
+  },
+  "author": "Taimur Shah",
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "webpack": "~1.12.1",
+    "webpack-dev-server": "~1.10.1",
+    "autoprefixer-loader": "~2.1.0",
+    "babel-core": "~5.8.23",
+    "babel-loader": "~5.3.2",
+    "react-hot-loader": "~1.3.0",
+    "css-loader": "~0.17.0",
+    "style-loader": "~0.12.3"
+  },
+  "dependencies": {
+    "react": "~0.13.3",
+    "axios": "~0.5.4"
+  }
+}

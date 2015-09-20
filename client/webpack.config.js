@@ -2,12 +2,12 @@ var webpack = require("webpack")
 
 module.exports = {
     resolve: {
-        moduleDirectories: ['node_modules', 'components', 'flux'],
+        modulesDirectories: ['node_modules', 'components', 'redux'],
         extensions: ['', '.js', '.jsx']
     },
 
     entry: [
-        './components/root/index.jsx'
+        './components/routes.jsx'
     ],
     
     output: {
@@ -21,7 +21,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.js.*$/,
-                loaders: ['babel-loader?stage=0'],
+                loaders: ['babel?stage=0&optional[]=runtime'],
                 exclude: /node_modules/
             },
             {

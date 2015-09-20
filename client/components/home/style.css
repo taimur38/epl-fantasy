@@ -1,0 +1,19 @@
+* {
+    color: #444;
+    font-family: Helvetica, Arial;
+}
+
+.user {
+    font-size: 24px;
+}
+.user div {
+    float: left;
+}
+
+.user .name {
+    padding: 24px;
+}
+
+.user .points {
+    padding: 24px;
+}

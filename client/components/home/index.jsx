@@ -13,7 +13,7 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        this.interval = setInterval(() => this.props.dispatch(loadTable()), 20000);
+        this.interval = setInterval(() => this.props.dispatch(loadTable()), 5 * 60 * 1000);
     }
 
     componentWillUnmount() {

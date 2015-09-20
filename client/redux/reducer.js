@@ -1,21 +1,8 @@
+import picks from 'userPicks.json';
 import { INVALIDATE_TABLE, LOAD_TABLE_START, LOAD_TABLE_SUCCESS } from 'actions';
 
 const initialState = {
-    users: {
-        taimur: { 
-            name: "Taimur",
-            picks: [
-                {
-                    code: "MCI",
-                    position: 1
-                },
-                {
-                    code: "CRY",
-                    position: 2
-                }
-            ]
-        }
-    },
+    users: picks,
     eplPositions: {
         loading: false,
         positions: []

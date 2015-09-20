@@ -4,16 +4,11 @@
 }
 
 .user {
-    font-size: 24px;
-}
-.user div {
-    float: left;
+    font-size: 25px;
 }
 
 .user .name {
-    padding: 24px;
-}
-
-.user .points {
-    padding: 24px;
+    float: left;
+    width: 300px;
+    margin-right: 50px;
 }

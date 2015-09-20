@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { loadTable } from 'actions';
-import User from 'user';
+import { User, calculatePoints } from 'user';
 
 class Home extends React.Component {
 
@@ -12,7 +12,12 @@ class Home extends React.Component {
         props.dispatch(loadTable());
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentDidMount() {
+        this.interval = setInterval(() => this.props.dispatch(loadTable()), 20000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
     render() {
@@ -21,15 +26,20 @@ class Home extends React.Component {
             return (<div>Loading...</div>);
 
         let userScores = [];
-        for(let user in this.props.users) {
-            userScores.push(<User key={user} user={this.props.users[user]} eplPositions={this.props.eplPositions.positions} />);
+        for(let i = 0; i < this.props.users.length; i++) {
+            let user = this.props.users[i];
+            userScores.push({
+                component: <User key={user.name} user={user} eplPositions={this.props.eplPositions.positions} />,
+                points: calculatePoints(user.picks, this.props.eplPositions.positions)
+            })
         }
 
-        console.log(userScores);
+        let sorted = userScores.sort((a,b) => b.points - a.points);
+
         return (
             <div className='home'> 
                 <h1>Leaderboard</h1>
-                {userScores} 
+                {sorted.map(x => x.component)} 
             </div>
         );
     }

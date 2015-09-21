@@ -2,6 +2,25 @@
     color: #444;
     font-family: Helvetica, Arial;
 }
+.root:before {
+    content: ' ';
+    z-index: -1;
+    left: 0;
+    background-size: cover;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    background-image: url("http://d.ibtimes.co.uk/en/full/1428737/jose-mourinho.jpg");
+    opacity: .1;
+    display: block;
+}
+
+.root {
+    width: 75%;
+    margin: auto;
+}
 
 .user {
     font-size: 25px;
@@ -9,16 +28,25 @@
 
 .user .name {
     float: left;
-    width: 300px;
+    width: 75%;
     cursor: pointer;
     margin-right: 50px;
 }
 
+.wrapper {
+    height: 0;
+    overflow: hidden;
+    transition: all .5s ease-in;
+}
+
+.wrapper.active {
+    height: 550px;
+}
+
 table {
-    width: 50%;
+    width: 75%;
     font-size: .75em;
     margin-left: 30px;
-    display: none;
 }
 
 .position {
@@ -31,10 +59,6 @@ table {
 
 .position.up {
     color: green;
-}
-
-table.active {
-    display: table;
 }
 
 th {

@@ -3,10 +3,10 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 import { Router, Route, Redirect } from 'react-router';
+import createHistory from 'history/lib/createBrowserHistory';
 
 import reducer from 'reducer';
 import Home from 'home';
-import UserPage from 'userPage';
 
 const createStoreWithMiddleware = applyMiddleware(
     thunkMiddleware
@@ -29,10 +29,9 @@ React.render(
     <Provider store={store}>
     {() => {
         return (
-            <Router>
+            <Router history={createHistory()}>
                 <Route name='root' component={Root}>
                     <Route path='/' component={Home} />
-                    <Route path='user/:userId' component={UserPage} />
                 </Route>
             </Router>
         )

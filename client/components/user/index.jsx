@@ -15,33 +15,41 @@ export class User extends React.Component {
 
     onSelect = () => { console.log('hi'); this.setState({ expanded: !this.state.expanded }) }
 
+    genTable = () => {
+        return (
+            <table>
+                <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th>Position</th>
+                        <th>Projected</th>
+                        <th>Delta</th>
+                    </tr>
+                </thead>
+            {
+                this.props.eplPositions.map(team => {
+                    let user_projected = this.props.user.picks.find(x => x.code == team.TeamCode);
+                    let diff = team.Position - team.LastPosition;
+
+                    return (<tr>
+                        <td className='team'>{team.TeamName}</td>
+                        <td className={'position ' + (diff != 0 ? (diff > 0 ? 'up' : 'down') : '')}>{team.Position}</td>
+                        <td className='projected'>{user_projected.position}</td>
+                        <td className='delta'>{Math.abs(user_projected.position - team.Position)}</td>
+                    </tr>);
+                })
+            }
+            </table> 
+        );
+    }
     render() {
         return (
             <div className='user'>
                 <div className='name' onClick={this.onSelect}>{this.props.user.name}</div>
                 <div className='points'>{this.state.points}</div>
-                <table className={this.state.expanded ? 'active' : ''}>
-                    <thead>
-                        <tr>
-                            <th>Team</th>
-                            <th>Position</th>
-                            <th>Projected</th>
-                            <th>Delta</th>
-                        </tr>
-                    </thead>
-                {
-                    this.props.eplPositions.map(team => {
-                        let user_projected = this.props.user.picks.find(x => x.code == team.TeamCode);
-
-                        return (<tr>
-                            <td className='team'>{team.TeamName}</td>
-                            <td className={'position ' + ((team.Position - team.LastPosition) >= 0 ? 'up' : 'down')}>{team.Position}</td>
-                            <td className='projected'>{user_projected.position}</td>
-                            <td className='delta'>{Math.abs(user_projected.position - team.Position)}</td>
-                        </tr>);
-                    })
-                }
-                </table> 
+                <div className={'wrapper ' + (this.state.expanded ? 'active' : '')}>
+                    {this.genTable()}
+                </div>
             </div>
         );
     }

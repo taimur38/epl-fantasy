@@ -22,6 +22,8 @@ export class User extends React.Component {
                     <tr>
                         <th>Team</th>
                         <th>Position</th>
+                        <th>Points</th>
+                        <th>Played</th>
                         <th>Projected</th>
                         <th>Delta</th>
                     </tr>
@@ -34,6 +36,8 @@ export class User extends React.Component {
                     return (<tr>
                         <td className='team'>{team.TeamName}</td>
                         <td className={'position ' + (diff != 0 ? (diff > 0 ? 'up' : 'down') : '')}>{team.Position}</td>
+                        <td className='points'>{team.Points}</td>
+                        <td className='games_played'>{team.Played}</td>
                         <td className='projected'>{user_projected.position}</td>
                         <td className='delta'>{Math.abs(user_projected.position - team.Position)}</td>
                     </tr>);

@@ -78,7 +78,7 @@ export function calculatePoints(userPicks, eplPositions) {
     
     let relegationBonus = relegatedTeams.every(team =>  team.position > 17);
     if(relegationBonus)
-        total += 50;
+        total += 25;
     
     return total;
 }

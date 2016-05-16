@@ -17,10 +17,16 @@ def get_current():
         if date > current:
             return index
 
+    return index - 1
+
 
 @app.route('/api/table')
 def table():
     week = get_current()
+    print(week)
+    rsp = requests.get(url_template.format(matchDay=week))
+    if 'html' in rsp.text:
+        week -= 1
     rsp = requests.get(url_template.format(matchDay=week))
     return rsp.text
 

@@ -24,5 +24,27 @@ for u in users:
 
 s = sorted(d.items(), key=operator.itemgetter(1))
 
+print("================")
+print("total difference")
+print("================")
+
 for t, p in s:
-    print(t + ": " + str(p))
+    print(t + ": " + str(float(p)/12))
+
+
+print("================")
+print(" net difference ")
+print("================")
+
+
+d = dict()
+for u in users:
+    for p in u['picks']:
+        c = p['code']
+        delta = positions[c] - p['position']
+        d[c] = d.get(c, 0) + delta
+
+s = sorted(d.items(), key=operator.itemgetter(1))
+
+for t, p in s:
+    print(t + ": " + str(float(p)/12))
